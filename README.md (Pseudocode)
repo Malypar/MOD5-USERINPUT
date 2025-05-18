@@ -1,0 +1,48 @@
+BEGIN
+
+  Define a shared file lock (mutex)
+
+  FUNCTION appendToFile(fileName, userInput)
+    Acquire file lock
+    Open the file in append mode
+    IF file is open THEN
+      Write userInput to the file
+      Close the file
+    ELSE
+      Print "Unable to open file for appending"
+    ENDIF
+    Release file lock
+  END FUNCTION
+
+  FUNCTION reverseFile(inputFileName, outputFileName)
+    Acquire file lock
+    Open the input file for reading
+    Open the output file for writing
+    IF both files are open THEN
+      Read the entire content of the input file
+      Reverse all characters in the content
+      Write the reversed content to the output file
+      Close both files
+    ELSE
+      Print "Error opening files"
+    ENDIF
+    Release file lock
+  END FUNCTION
+
+  MAIN PROGRAM
+    PROMPT user to "Enter text to append to the file"
+    Read user input
+
+    Set originalFileName = "CSC450_CT5_mod5.txt"
+    Set reversedFileName = "CSC450-mod5-reverse.txt"
+
+    Create a thread to run appendToFile(originalFileName, userInput)
+    Create another thread to run reverseFile(originalFileName, reversedFileName)
+
+    Wait for both threads to finish
+
+    Print "Data appended and reversed file created."
+
+  END MAIN
+
+END
