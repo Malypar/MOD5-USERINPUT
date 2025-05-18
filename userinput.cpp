@@ -36,7 +36,7 @@ void reverseFile(const std::string& inputFile, const std::string& outputFile) {
 
 int main() {
     std::string userInput;
-    std::cout << "Enter Text To Append To File";
+    std::cout << "Enter Text To Append To File: \n";
     std::getline(std::cin, userInput);
 
     const std::string origianlFile = "CSC450_CT5_mod5.txt";
